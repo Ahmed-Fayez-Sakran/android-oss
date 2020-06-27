@@ -35,6 +35,7 @@ import kotlinx.android.synthetic.main.fragment_backing_section_bonus.*
 import kotlinx.android.synthetic.main.fragment_backing_section_delivery_date_reminder.*
 import kotlinx.android.synthetic.main.fragment_backing_section_reward_delivery.*
 import kotlinx.android.synthetic.main.fragment_backing_section_summary_total.*
+import kotlinx.android.synthetic.main.fragment_pledge.*
 import kotlinx.android.synthetic.main.fragment_pledge_section_summary_pledge.*
 import kotlinx.android.synthetic.main.fragment_pledge_section_summary_shipping.*
 import kotlinx.android.synthetic.main.reward_card_details.*

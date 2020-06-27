@@ -58,7 +58,6 @@ import kotlinx.android.synthetic.main.fragment_pledge_section_footer.*
 import kotlinx.android.synthetic.main.fragment_pledge_section_header_reward_sumary.*
 import kotlinx.android.synthetic.main.fragment_pledge_section_payment.*
 import kotlinx.android.synthetic.main.fragment_pledge_section_pledge_amount.*
-import kotlinx.android.synthetic.main.fragment_pledge_section_reward_summary.*
 import kotlinx.android.synthetic.main.fragment_pledge_section_shipping.*
 import kotlinx.android.synthetic.main.fragment_pledge_section_summary_pledge.*
 import kotlinx.android.synthetic.main.fragment_pledge_section_summary_shipping.*
@@ -134,7 +133,6 @@ class PledgeFragment : BaseFragment<PledgeFragmentViewModel.ViewModel>(), Reward
                 .compose(bindToLifecycle())
                 .compose(observeForUI())
                 .subscribe {
-                    pledge_estimated_delivery.text = it
                     pledge_header_estimated_delivery_label.text = pledge_header_estimated_delivery_label.text.toString() + " " + it
                 }
 
@@ -142,15 +140,8 @@ class PledgeFragment : BaseFragment<PledgeFragmentViewModel.ViewModel>(), Reward
                 .compose(bindToLifecycle())
                 .compose(observeForUI())
                 .subscribe {
-                    ViewUtils.setGone(pledge_estimated_delivery_container, it)
                     ViewUtils.setGone(pledge_header_estimated_delivery_label)
-                    ViewUtils.setGone(pledge_estimated_delivery)
                 }
-
-        this.viewModel.outputs.rewardSummaryIsGone()
-                .compose(bindToLifecycle())
-                .compose(observeForUI())
-                .subscribe { ViewUtils.setGone(reward_summary, it) }
 
         this.viewModel.outputs.continueButtonIsGone()
                 .compose(bindToLifecycle())
@@ -216,13 +207,6 @@ class PledgeFragment : BaseFragment<PledgeFragmentViewModel.ViewModel>(), Reward
                 .compose(bindToLifecycle())
                 .compose(observeForUI())
                 .subscribe { setTextColor(it, pledge_amount, pledge_symbol_start, pledge_symbol_end) }
-
-        this.viewModel.outputs.rewardTitle()
-                .compose(bindToLifecycle())
-                .compose(observeForUI())
-                .subscribe {
-                    reward_title.text = it
-                }
 
         this.viewModel.outputs.cardsAndProject()
                 .compose(bindToLifecycle())
@@ -464,7 +448,7 @@ class PledgeFragment : BaseFragment<PledgeFragmentViewModel.ViewModel>(), Reward
 
         val constraintSet = ConstraintSet()
         constraintSet.clone(pledge_header_container)
-        constraintSet.clear(R.id.list_rewards_add_ons, ConstraintSet.BOTTOM);
+        constraintSet.clear(R.id.header_list_rewards_add_ons, ConstraintSet.BOTTOM);
 
         TransitionManager.beginDelayedTransition(pledge_header_container)
         constraintSet.applyTo(pledge_header_container)
@@ -475,7 +459,7 @@ class PledgeFragment : BaseFragment<PledgeFragmentViewModel.ViewModel>(), Reward
 
         val constraintSet = ConstraintSet()
         constraintSet.clone(pledge_header_container)
-        constraintSet.connect(R.id.list_rewards_add_ons, ConstraintSet.BOTTOM, R.id.header_animation_guideline, ConstraintSet.BOTTOM)
+        constraintSet.connect(R.id.header_list_rewards_add_ons, ConstraintSet.BOTTOM, R.id.header_animation_guideline, ConstraintSet.BOTTOM)
 
         TransitionManager.beginDelayedTransition(pledge_header_container)
         constraintSet.applyTo(pledge_header_container)
@@ -598,8 +582,8 @@ class PledgeFragment : BaseFragment<PledgeFragmentViewModel.ViewModel>(), Reward
     }
 
     private fun setupRewardRecyclerView() {
-        list_rewards_add_ons.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        list_rewards_add_ons.adapter = headerAdapter
+        header_list_rewards_add_ons.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        header_list_rewards_add_ons.adapter = headerAdapter
     }
 
     private fun setClickableHtml(string: String, textView: TextView) {

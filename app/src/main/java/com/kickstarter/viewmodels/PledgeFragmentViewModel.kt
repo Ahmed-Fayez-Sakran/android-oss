@@ -157,9 +157,6 @@ interface PledgeFragmentViewModel {
         /** Emits the currency symbol string of the project. */
         fun projectCurrencySymbol(): Observable<Pair<SpannableString, Boolean>>
 
-        /** Emits a boolean determining if the delivery section should be hidden. */
-        fun rewardSummaryIsGone(): Observable<Boolean>
-
         /** Emits the title of the current reward. */
         fun rewardTitle(): Observable<String>
 
@@ -263,7 +260,6 @@ interface PledgeFragmentViewModel {
         private val conversionText = BehaviorSubject.create<String>()
         private val conversionTextViewIsGone = BehaviorSubject.create<Boolean>()
         private val decreasePledgeButtonIsEnabled = BehaviorSubject.create<Boolean>()
-        private val rewardSummaryIsGone = BehaviorSubject.create<Boolean>()
         private val estimatedDelivery = BehaviorSubject.create<String>()
         private val estimatedDeliveryInfoIsGone = BehaviorSubject.create<Boolean>()
         private val increasePledgeButtonIsEnabled = BehaviorSubject.create<Boolean>()
@@ -1187,9 +1183,6 @@ interface PledgeFragmentViewModel {
 
         @NonNull
         override fun projectCurrencySymbol(): Observable<Pair<SpannableString, Boolean>> = this.projectCurrencySymbol
-
-        @NonNull
-        override fun rewardSummaryIsGone(): Observable<Boolean> = this.rewardSummaryIsGone
 
         @NonNull
         override fun rewardTitle(): Observable<String> = this.rewardTitle

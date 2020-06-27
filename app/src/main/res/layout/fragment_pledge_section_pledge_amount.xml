@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/pledge_container"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:layout_marginBottom="@dimen/grid_3"
@@ -10,7 +9,10 @@
   android:focusable="true"
   android:gravity="center_vertical"
   android:orientation="horizontal"
-  tools:showIn="@layout/fragment_pledge">
+  tools:showIn="@layout/fragment_pledge"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:animationCache="true">
 
   <TextView
     android:id="@+id/pledge_amount_label"
